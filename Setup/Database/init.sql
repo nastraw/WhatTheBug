@@ -7,7 +7,7 @@ GO
 USE [WhatTheBug]
 GO
 
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='SchemaVersion')
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE name='SchemaVersion')
 BEGIN
   CREATE TABLE SchemaVersion (
     [Version] INT PRIMARY KEY,
@@ -16,7 +16,7 @@ BEGIN
   )
 END
 
-IF EXISTS (SELECT *FROM sysobjects WHERE name='SchemaVersion_Migrate')
+IF EXISTS (SELECT *FROM sys.objects WHERE name='SchemaVersion_Migrate')
 BEGIN
   DROP PROCEDURE SchemaVersion_Migrate
 END
@@ -30,4 +30,23 @@ CREATE PROCEDURE SchemaVersion_Migrate @Version int, @Description VARCHAR(100)
   END
 GO
 
-EXEC SchemaVersion_Migrate @Version = 1, @Description = 'Initial schema'
+IF EXISTS (SELECT *FROM sys.objects WHERE name='SchemaVersion_Rollback')
+    BEGIN
+        DROP PROCEDURE SchemaVersion_Rollback
+    END
+GO
+
+CREATE PROCEDURE SchemaVersion_Rollback @Version int
+AS
+BEGIN
+    SET NOCOUNT ON
+    DELETE FROM SchemaVersion
+    WHERE Version = @Version
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM SchemaVersion WHERE Version = 1)
+BEGIN
+  EXEC SchemaVersion_Migrate @Version = 1, @Description = 'Initial schema'
+END
+GO
