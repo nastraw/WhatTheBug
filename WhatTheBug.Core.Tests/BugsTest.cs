@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using WhatTheBug.Core;
 
-namespace WhatTheBug.Tests
+namespace WhatTheBug.Core.Tests
 {
     public class BugsTest
     {
