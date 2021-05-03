@@ -13,6 +13,7 @@ namespace WhatTheBug
             switch (args[0])
             {
                 case "list":
+                case "ls":
                     var viewModel = new BugListViewModel(bugList);
                     Console.WriteLine(viewModel.FormatBugList());
                     break;
