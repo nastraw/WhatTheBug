@@ -6,7 +6,12 @@ namespace WhatTheBug
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            switch (args)
+            {
+                default:
+                    Console.WriteLine("Command not recognized");
+                    break;
+            }
         }
     }
 }
