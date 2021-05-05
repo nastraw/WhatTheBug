@@ -46,7 +46,7 @@ namespace WhatTheBug.Tests
 			var viewModel = new BugListViewModel(bugList);
 			var output = viewModel.FormatBugList();
 
-			Assert.That(output, Does.Contain("BugId Title Description Created Modified" + Environment.NewLine));
+			Assert.That(output, Does.Contain("BugId Title                Description                                        Created                Modified"));
 		}
 	}
 }

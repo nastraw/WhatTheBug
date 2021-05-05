@@ -15,12 +15,17 @@ namespace WhatTheBug
 
 		public string FormatBugList()
 		{
-			return "BugId Title Description Created Modified" + Environment.NewLine + string.Join(Environment.NewLine, _bugList.Select(FormatBugRecord));
+			return FormatOutputRow("BugId", "Title", "Description", "Created", "Modified") + Environment.NewLine + string.Join(Environment.NewLine, _bugList.Select(FormatBugRecord));
 		}
 
 		private string FormatBugRecord(Bug bug)
 		{
-			return $"{bug.BugId}, {bug.Title}, {bug.Description}, {bug.Created}, {bug.Modified?.ToString() ?? "-----"}";
+			return FormatOutputRow(bug.BugId.ToString(), bug.Title, bug.Description, bug.Created.ToString(), bug.Modified?.ToString() ?? "-----");
+		}
+
+		private string FormatOutputRow(params string[] args)
+		{
+			return string.Format("{0, 5} {1, -20} {2, -50} {3, -22} {4, -22}", args);
 		}
 	}
 }
