@@ -20,7 +20,7 @@ namespace WhatTheBug
 
 		private string FormatBugRecord(Bug bug)
 		{
-			return $"{bug.Title}, {bug.Description}";
+			return $"{bug.BugId}, {bug.Title}, {bug.Description}, {bug.Created}, {bug.Modified?.ToString() ?? "-----"}";
 		}
 	}
 }
