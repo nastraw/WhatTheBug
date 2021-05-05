@@ -15,7 +15,7 @@ namespace WhatTheBug
 
 		public string FormatBugList()
 		{
-			return string.Join(Environment.NewLine, _bugList.Select(FormatBugRecord));
+			return "BugId Title Description Created Modified" + Environment.NewLine + string.Join(Environment.NewLine, _bugList.Select(FormatBugRecord));
 		}
 
 		private string FormatBugRecord(Bug bug)
