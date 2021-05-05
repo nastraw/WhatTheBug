@@ -17,5 +17,11 @@ namespace WhatTheBug.Core
 			Description = description;
 			Created = DateTime.Now;
 		}
+
+		public Bug(string title, string description, DateTime created)
+			: this(title, description)
+		{
+			Created = created;
+		}
 	}
 }
