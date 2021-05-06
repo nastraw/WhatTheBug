@@ -17,6 +17,11 @@ namespace WhatTheBug
                     var viewModel = new BugListViewModel(bugList);
                     Console.WriteLine(viewModel.FormatBugList());
                     break;
+                case "add":
+                    var title = args[1];
+                    var description = args[2];
+                    bugList.Add(new Bug(title, description));
+                    break;
                 default:
                     Console.WriteLine("Command not recognized");
                     break;

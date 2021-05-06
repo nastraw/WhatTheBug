@@ -5,7 +5,7 @@ namespace WhatTheBug.Core.Tests
     public class BugsTest
     {
         [Test]
-        public void Bugs_WhenCalled_ReturnsBugList()
+        public void Add_WithBug_AddsBugToBugList()
         {
             Bugs bugList = new Bugs();
             bugList.Add(new Bug("Test bug 1", "Test bug 1 description"));
