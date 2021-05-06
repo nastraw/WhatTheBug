@@ -36,5 +36,17 @@ namespace WhatTheBug.Tests
 			Assert.That(output, Does.Contain("1/1/1991"), "Output does not include Bug.Created");
 			Assert.That(output, Does.Contain("----"), "Output does not include Bug.Modified");
 		}
+
+		[Test]
+		public void FormatBugList_WhenCalled_OutputsHeaderRow()
+		{
+			var bugList = new Bugs();
+			bugList.Add(new Bug("Test bug 1", "Test bug 1 description", new DateTime(1991,1,1)));
+			
+			var viewModel = new BugListViewModel(bugList);
+			var output = viewModel.FormatBugList();
+
+			Assert.That(output, Does.Contain("BugId Title                Description                                        Created                Modified"));
+		}
 	}
 }
