@@ -18,11 +18,7 @@ namespace WhatTheBug
                     Console.WriteLine(viewModel.FormatBugList());
                     break;
                 case "add":
-                    if (args.Length != 3)
-                        throw new ArgumentException("Add command expects 2 arguments: add {title} {description}");
-                    var title = args[1];
-                    var description = args[2];
-                    bugList.Add(new Bug(title, description));
+                    new AddCommand(args[1], args[2]).Add(bugList);
                     break;
                 default:
                     Console.WriteLine("Command not recognized");
